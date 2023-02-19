@@ -1,0 +1,18 @@
+.colors{
+    border: solid 2px black;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.tab{
+    margin: 10px;
+    border: solid 2px black;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.tab div{
+    margin: 5px;
+    width: calc(20% - 10px);
+    height: 100px;
+}
