@@ -11,7 +11,7 @@
     {
         "id": 2,
         "nom": "Plaquettes de frein (x4)",
-        "image": "images/plaquettes-frein.png",
+        "image": "./images/plaquettes-frein.png",
         "prix": 40,
         "categorie": "Freinage",
         "description": "Freiiiin",
@@ -20,7 +20,7 @@
     {
         "id": 3,
         "nom": "Ampoule boîte à gants",
-        "image": "images/ampoule-boite-a-gants.png",
+        "image": "/images/ampoule-boite-a-gants.png",
         "prix": 5.49,
         "categorie": "Optiques",
         "description": "Autre ampoule !!!???",

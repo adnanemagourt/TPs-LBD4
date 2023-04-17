@@ -1,4 +1,4 @@
-const response = await fetch('../json/pieces-auto.json');
+const response = await fetch('json/pieces-autos.json');
 const pieces = await response.json();
 // qst1: On utilise const car ces variables ne doivent pas être changées par la suite
 // qst2: await permet de ne passer vers la suite du code qu'après avoir terminé son instruction
