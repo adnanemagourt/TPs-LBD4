@@ -31,8 +31,6 @@
             <a href="./">Go back</a>
 
             <xsl:for-each select="breakfast_menu/food">
-                <!-- <xsl:sort select="YEAR" order="descending"></xsl:sort>
-                <xsl:if test="PRICE &lt; 10"> -->
                 <div class="cd">
                     <div>
                         <h3><xsl:value-of select="name" />,
