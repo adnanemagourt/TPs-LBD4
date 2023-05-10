@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+
+    function valid_pseudo(str) {
+        if (str.length < 5) {
+            document.getElementById("valid").innerHTML = "Pseudo au minimum 5 caractères !";
+            document.getElementById("valid").style = "color: red;";
+            return
+                ;
+        } else {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    if (this.responseText == "true") { document.getElementById("valid").innerHTML = "Pseudo valide"; }
+                    else { document.getElementById("valid").innerHTML =  "Pseudo invalide"; }
+                }
+            };
+            xhr.open("POST", "database.php", true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.send("pseudo=" + str);
+        }
+    }
+</script>
+
+<body>
+    <form action="">
+        <label for="pseudo">Entrez votre pseudo</label>
+        <input type="text" name="pseudo" id="pseudo" onkeyup="valid_pseudo(this.value)">
+    </form>
+    <div id="valid"></div>
+</body>
+
+</html>
