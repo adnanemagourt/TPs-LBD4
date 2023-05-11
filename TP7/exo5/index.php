@@ -17,7 +17,6 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(attribute: PDO::ATTR_ERRMODE, value: PDO::ERRMODE_EXCEPTION);
 
-
     $query = "SELECT Code,Name FROM country";
     $stmt = $conn->prepare($query);
     $stmt->execute();
@@ -28,14 +27,15 @@ try {
 ?>
 
 <script>
+    $click = Array();
     function show(id) {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
-            document.getElementById(id).innerHTML += ""
+            document.getElementById(id).innerHTML += xhr.responseText;
         };
         xhr.open("POST", "database.php", true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send("pseudo=" + str);
+        xhr.send("id=" + id);
 
     }
 </script>
