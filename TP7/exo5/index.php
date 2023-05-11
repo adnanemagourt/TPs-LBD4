@@ -27,8 +27,13 @@ try {
 ?>
 
 <script>
-    $click = Array();
+    var click = Array();
+    var ul = document.getElementByTagname("ul")[0].getChildren();
+    ul.forEach(element => {
+        click.append(element.id);
+    });
     function show(id) {
+
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             document.getElementById(id).innerHTML += xhr.responseText;
