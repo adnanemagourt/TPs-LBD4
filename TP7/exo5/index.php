@@ -27,16 +27,23 @@ try {
 ?>
 
 <script>
-    var click = Array();
-    var ul = document.getElementByTagname("ul")[0].getChildren();
-    ul.forEach(element => {
-        click.append(element.id);
-    });
-    function show(id) {
+    var prev_id = "";
 
+    function show(id) {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
-            document.getElementById(id).innerHTML += xhr.responseText;
+            if (this.readyState == 4 && this.status == 200) {
+                if (prev_id != "") {
+                    document.getElementById(prev_id + "_").innerHTML = "";
+                }
+                if (id != prev_id) {
+                    prev_id = id;
+                    document.getElementById(id + "_").innerHTML += xhr.responseText;
+                } else {
+                    prev_id = id;
+                    document.getElementById(id + "_").innerHTML = "";
+                }
+            }
         };
         xhr.open("POST", "database.php", true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -52,6 +59,7 @@ try {
         foreach ($result as $row) {
         ?>
             <li id="<?php echo $row["Code"] ?>" onclick="show(this.id)"><?php echo $row["Name"] ?></li>
+            <div id="<?php echo $row["Code"] ?>_"></div>
         <?php
         }
         ?>
