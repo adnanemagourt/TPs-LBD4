@@ -8,26 +8,37 @@
     <title>Document</title>
 </head>
 
-<?php
-$queryString = http_build_query([
-    'access_key' => 'YOUR_ACCESS_KEY'
-]);
 
-$ch = curl_init(sprintf('%s?%s', 'https://api.aviationstack.com/v1/flights', $queryString));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-$json = curl_exec($ch);
-curl_close($ch);
-
-$api_result = json_decode($json, true);
-?>
 
 <script>
+    function show(info) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("info").innerHTML = xhr.responseText;
+            }
+        };
+        xhr.open("POST", "open.php", true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send("info="+info);
 
+    }
 </script>
 
-<body>
+<style>
+    .up{
+        display: flex;
+    }
+</style>
 
+<body>
+    <div class="up">
+        <button type="button" onclick="show('flights')">Real-Time Flights</button>
+        <button type="button" onclick="show('airports')">Airports</button>
+        <button type="button" onclick="show('airlines')">Airlines</button>
+        <button type="button" onclick="show('airplanes')">Airplanes</button>
+    </div>
+    <div id="info"></div>
 </body>
 
 </html>

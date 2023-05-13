@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    let dash = document.getElementById("result");
+    function show(info) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                dash.innerHTML = "";
+                let result = JSON.parse(xhr.responseText);
+                result.data.forEach(element => {
+                    let a = document.createElement("img");
+                    a.src = element.embed_url;
+                    dash.appendChild(a);
+                });
+            }
+        };
+        xhr.open("POST", "https://api.giphy.com/v1/stickers/search?api_key=nxsb5j7hG86NWxFJmsK6mXRhpnVhbkmC&q=" + info, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send();
+
+    }
+</script>
+
+<body>
+    <label for="">Search: </label>
+    <input type="text" name="srch" onkeyup="show(this.value)">
+    <div id="result"></div>
+</body>
+</html>
